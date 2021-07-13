@@ -33,7 +33,17 @@ class Log {
     }
 	
     public function getPath(){
-        return ROOT . '/logs/' . static::$instances[static::class]->getName() . '/';
+        return $this->getRootDir() . static::$instances[static::class]->getName() . '/';
+    }
+    public function getRootDir(){
+        
+        if(defined('ROOT')){
+            return ROOT . '/logs/';
+        }
+        if(isset($_SERVER['DOCUMENT_ROOT'])){
+            return $_SERVER['DOCUMENT_ROOT'] . '/logs/';
+        }
+        return dirname(dirname(dirname(dirname(dirname(__FILE__))))) . '/logs/';
     }
 	
     public static function getRequestID(){
