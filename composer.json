@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Elveneek\\": "src/Elveneek/"
+            "Elveneek\\": "Elveneek/"
         }
     }
 }
