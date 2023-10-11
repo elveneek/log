@@ -3,7 +3,9 @@ namespace Elveneek;
 class MetaLogFormatter extends \Monolog\Formatter\LineFormatter{
    public function format(array $record): string
    {
-       
+        if (isset($record['context']['exception']) && $record['context']['exception'] instanceof \Throwable) {
+             $record['context']['exception'] = $this->normalizeException($record['context']['exception']);
+        }
        
         if(isset($record['is_this_first_request'])){
             $isThisFirstRequest = $record['is_this_first_request'];
